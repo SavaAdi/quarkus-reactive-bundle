@@ -1,6 +1,8 @@
 package org.acme.resteasyjackson;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.quarkus.jackson.ObjectMapperCustomizer;
 
@@ -13,5 +15,6 @@ public class MyObjectMapperCustomizer implements ObjectMapperCustomizer {
     public void customize(ObjectMapper objectMapper) {
         // To suppress serializing properties with null values
         objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
     }
 }
